@@ -1,8 +1,10 @@
-function mostrar()
-{
+function mostrar() {
+  let numerodeSaludos = parseInt(prompt("Ingresa la cantidad de saludos: "));
+  while (isNaN(numerodeSaludos) || numerodeSaludos <= 0 ){
+    numerodeSaludos = parseInt(prompt("Número inválido. Ingrese nuevamente la cantidad de saludos "));
+  }
 
-	var repetciones = prompt("ingrese el número de repeticiones");
-	alert("ok");
-
-
-}//FIN DE LA FUNCIÓN
+  for (let i = 0; i < numerodeSaludos; i++) {
+    document.write("Hola UTN FRA" + "<br>");
+  }
+} //FIN DE LA FUNCIÓN

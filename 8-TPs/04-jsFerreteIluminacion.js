@@ -8,7 +8,82 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
 
  */
-function CalcularPrecio () 
-{
- 	
+function CalcularPrecio() {
+  let lampara = 35;
+  let marca;
+  let cantidad;
+  let descuento;
+  let preciofinal;
+  let impuestos;
+
+  cantidad = parseInt(document.getElementById("txtIdCantidad").value);
+  if (cantidad < 0 || isNaN(cantidad)) {
+    document.getElementById("txtIdprecioDescuento").value = "Dato inválido. Ingrese un número mayor que 0";
+  }
+  marca = document.getElementById("Marca").value;
+
+  switch (marca) {
+    case "ArgentinaLuz":
+      if (cantidad >= 6) {
+        descuento = lampara * 0.5;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 5) {
+        descuento = lampara * 0.4;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 4) {
+        descuento = lampara * 0.25;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 3) {
+        descuento = lampara * 0.15;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad <= 2 && cantidad >= 0) {
+        preciofinal = lampara * cantidad;
+      } 
+      break;
+    case "FelipeLamparas":
+      if (cantidad >= 6) {
+        descuento = lampara * 0.5;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 5) {
+        descuento = lampara * 0.3;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 4) {
+        descuento = lampara * 0.25;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 3) {
+        descuento = lampara * 0.1;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad <= 2 && cantidad >= 0) {
+        preciofinal = lampara * cantidad;
+      }
+      break;
+    case "JeLuz":
+    case "HazIluminacion":
+    case "Osram":
+      if (cantidad >= 6) {
+        descuento = lampara * 0.5;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 5) {
+        descuento = lampara * 0.3;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 4) {
+        descuento = lampara * 0.2;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad == 3) {
+        descuento = lampara * 0.05;
+        preciofinal = lampara * cantidad - descuento;
+      } else if (cantidad <= 2 && cantidad >= 0) {
+        preciofinal = lampara * cantidad;
+      }
+      break;
+  }
+  if (preciofinal >= 120) {
+    impuestos = preciofinal * 0.1;
+    preciofinal += impuestos;
+    document.getElementById("txtIdprecioDescuento").value =
+      "Usted pago $" + preciofinal + " siendo $" + impuestos + " el impuesto que se pagó";
+  } else if (preciofinal >= 0 && preciofinal < 120) {
+    document.getElementById("txtIdprecioDescuento").value =
+      "El precio total es de $" + preciofinal;
+  }
 }
